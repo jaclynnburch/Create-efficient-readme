@@ -1,10 +1,9 @@
-// TODO: Include packages needed for this application
-const fs = require('fs');
+// packages needed for this application
 const inquirer = require('inquirer');
-const path = require('path');
-const generateMarkdown = require('./utils/generateMarkdown');
+const fs = require('fs');
 
-// TODO: Create an array of questions for user input
+
+// array of questions for user input
 const questions = [
      {
         type: 'input',
@@ -45,19 +44,22 @@ const questions = [
 
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    return fs.writeToFile(path.join(proces.cwd(), fileName), data);
-}
 
+inquirer.prompt(questions).then(({ title, description, installation, usage, credits, license, feature }) => {
+    // readme template
+    const READMEfile = `# ${title}\n\n[Description](#description)\n\n[Installation](#installation)\n\n[Usage](#usage)\n\n[Credits](#credits)\n\n[License](#license)\n\n[Feature](#feature)\n\n## Description\n\n${description}\n\n## Installation\n\n${installation}\n\n## Usage\n\n${usage}\n\n## Credits\n\n${credits}\n\n## License\n\n${license}\n\n## Feature\n\n${feature}`;
 
-// TODO: Create a function to initialize app
-function init() {
-    inquirer.prompt(questions).then((responses) => {
-        console.log('Creating Efficient README.md file');
-        writeToFile('/.')
+    // function to create README with fs
+    function createNewFile(fileName, content) {
+        fs.writeFile(fileName, content, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('README.md created.');
+            }
+        });
     }
-}
 
-// Function call to initialize app
-init();
+    // function call to create README
+    createNewFile('README.md', READMEfile);
+});
