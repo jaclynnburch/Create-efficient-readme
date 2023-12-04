@@ -42,14 +42,22 @@ const questions = [
         name: 'features',
         message: 'Please list features, if not mentioned above.',
     },
-    
+
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    return fs.writeToFile(path.join(proces.cwd(), fileName), data);
+}
+
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions).then((responses) => {
+        console.log('Creating Efficient README.md file');
+        writeToFile('/.')
+    }
+}
 
 // Function call to initialize app
 init();
