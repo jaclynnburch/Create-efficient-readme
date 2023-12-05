@@ -38,16 +38,55 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'features',
-        message: 'Please list features, if not mentioned above.',
+        name: 'username',
+        message: 'Enter your Github username',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address',
     },
 
 ];
 
 
-inquirer.prompt(questions).then(({ title, description, installation, usage, credits, license, feature }) => {
+inquirer.prompt(questions).then(({ title, description, installation, usage, credits, license, username, email }) => {
+
     // readme template
-    const READMEfile = `# ${title}\n\n[Description](#description)\n\n[Installation](#installation)\n\n[Usage](#usage)\n\n[Credits](#credits)\n\n[License](#license)\n\n[Feature](#feature)\n\n## Description\n\n${description}\n\n## Installation\n\n${installation}\n\n## Usage\n\n${usage}\n\n## Credits\n\n${credits}\n\n## License\n\n${license}\n\n## Feature\n\n${feature}`;
+    const READMEfile = `# ${title}
+    
+## Description
+${description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+${installation}
+
+## Usage
+${usage}
+
+## License
+This application is covered under the ${license} license.
+
+## Contributing
+Contributions to this project are welcome. Please refer to the [Contributor Covenant](https://www.contributor-covenant.org/) for more information.
+
+## Tests
+Command tests:np
+\`\`\` npm test \`\`\`
+
+## Questions
+For any questions or inquiries, please contact me via GitHub or email:
+- GitHub: [${username}](https://github.com/${username})
+- Email: ${email}
+`;
 
     // function to create README with fs
     function createNewFile(fileName, content) {
