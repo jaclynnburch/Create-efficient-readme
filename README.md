@@ -1,7 +1,7 @@
 # Creating Efficient README Generator
     
 ## Description
-A command line application automating creating a README.md.
+Building and sharing a command line application automating creating a README.md.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -13,6 +13,7 @@ A command line application automating creating a README.md.
 
 ## Installation
 1) Install Node.js
+2) Install Inquirer 8.2.4
 
 ## Usage
 Screenshots included
